@@ -191,8 +191,7 @@ class TestGitCommit(unittest.TestCase, TestController):
         c.app.repo.name = 'testgit.git'
         self.repo = c.app.repo
         self.repo.refresh()
-        self.rev = M.repo.Commit.query.get(_id=self.repo.heads[0]['object_id'])
-        self.rev.repo = self.repo
+        self.rev = self.repo.commit()
 
     @td.with_user_project('test-admin')
     def test_commit(self):
